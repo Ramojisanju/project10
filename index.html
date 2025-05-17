@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Manager & Collaboration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="login-screen" class="centered-screen">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter username" />
+    <button id="login-btn">Login</button>
+  </div>
+
+  <div id="app" class="hidden">
+    <header>
+      <h1>Task Manager</h1>
+      <button id="logout-btn">Logout</button>
+      <button id="toggle-darkmode">Toggle Dark Mode</button>
+    </header>
+
+    <section id="project-section">
+      <h2>Projects</h2>
+      <input type="text" id="new-project-name" placeholder="New Project Name" />
+      <button id="add-project-btn">Add Project</button>
+      <ul id="project-list"></ul>
+    </section>
+
+    <section id="task-section" class="hidden">
+      <h2 id="project-title"></h2>
+
+      <div id="task-creation">
+        <input type="text" id="task-title" placeholder="Task Title" />
+        <input type="text" id="task-assignee" placeholder="Assignee" />
+        <input type="date" id="task-due-date" />
+        <select id="task-priority">
+          <option value="Low">Low Priority</option>
+          <option value="Medium" selected>Medium Priority</option>
+          <option value="High">High Priority</option>
+        </select>
+        <textarea id="task-desc" placeholder="Description"></textarea>
+        <button id="add-task-btn">Add Task</button>
+      </div>
+
+      <input type="text" id="task-search" placeholder="Search tasks..." />
+
+      <div id="kanban-board">
+        <div class="kanban-column" data-status="todo">
+          <h3>To Do</h3>
+          <div class="task-list" id="todo-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+        <div class="kanban-column" data-status="inprogress">
+          <h3>In Progress</h3>
+          <div class="task-list" id="inprogress-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+        <div class="kanban-column" data-status="done">
+          <h3>Done</h3>
+          <div class="task-list" id="done-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+      </div>
+
+      <div id="task-details-modal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close-btn" id="close-task-modal">&times;</span>
+          <h3 id="modal-task-title"></h3>
+          <p><strong>Assignee:</strong> <span id="modal-task-assignee"></span></p>
+          <p><strong>Due Date:</strong> <span id="modal-task-due-date"></span></p>
+          <p><strong>Priority:</strong> <span id="modal-task-priority"></span></p>
+          <p><strong>Description:</strong></p>
+          <p id="modal-task-desc"></p>
+          <h4>Comments</h4>
+          <ul id="modal-comments-list"></ul>
+          <textarea id="modal-comment-input" placeholder="Add a comment"></textarea>
+          <button id="modal-add-comment-btn">Add Comment</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
